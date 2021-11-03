@@ -1,0 +1,81 @@
+#!/usr/bin/env zsh
+# -*- mode: sh; sh-indentation: 4; sh-basic-offset: 4; indent-tabs-mode: nil;  -*-
+
+# Copyright (c) 2020 Sebastian Gniazdowski
+# License: MIT
+
+∧za-default-ice-main-cmd() {
+    # Set the base and typically useful options.
+    builtin emulate -LR zsh
+    builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
+
+    autoload -Uz is-at-least
+    local is_58
+    is-at-least 5.8 && is_58=1
+
+    integer retval
+    typeset -g REPLY
+    typeset -ga reply
+    typeset -gA Reply
+
+    [[ $1 == default-ice ]] && { shift; integer eas_subcommand=1; }
+    integer ibdebug=$+ICE[debug]
+
+    # -D - clear out the recognized options
+    # -E - allow mixing of options and non-options
+    # -M - allow private arrays for the options
+    #
+    # The options are:
+    # --with/--mod/-m/--use – to pass the desired module(s)
+    local -a help clear show stats get quiet
+    zparseopts -D -E -M ${is_58:+} -clear=clear c=clear \
+        -show=show s=show -stats=stats t=stats -get=get g=get \
+        -quiet=quiet q=quiet h=help -help=help || retval=1
+        if [[ $retval -gt 0 || $1 = -* ]] {
+            +zinit-message "{nl}{error}default-ice annex: {msg}Incorrect options" \
+                "given${${(M)1:#-*}:+ "(bad option: {ehi}$1{rst}{msg})"}." \
+                "Usage:{rst}{nl}"
+            help=( -h ) retval=1
+        }
+
+    if (( !$# && !${#help} && !${#show} && !${#clear} && !${#stats} )) {
+        +zinit-message "{ehi}default-ice annex:{rst}{msg} Missing any" \
+            "ices. Usage:{rst}{nl}"
+        help=( -h ) retval=1
+    }
+
+    # --help/-h
+    if (( ${#help} )) {
+        ∧za-default-ice-main-cmd-help-handler
+        return retval
+    }
+
+    # --show/-s
+    if (( ${#show} )) {
+        .za-default-ice-show-default-ices
+        return $?
+    }
+
+    # --stats/-t
+    if (( ${#stats} )) {
+        .za-default-ice-stats
+        return $?
+    }
+
+    local -A ZINIT_ICES
+    .zinit-ice "$@"
+    integer iceret=$?
+
+    shift iceret
+    if (( $# )) {
+        +zinit-message "{error}default-ice:{rst}{msg} Unrecognized ice detected{ehi}:" \
+            "{nb}{error}$1{msg}.{rst}"
+        return 1
+    }
+    Plugins[DEFAULT_ICE_default-ices]=${(j: :)${(@qkv)ZINIT_ICES}}
+    (( ${#quiet} )) || +zinit-message "{pre}default-ice:{rst}{msg} stored the ices{ehi}:{rst}" \
+                                "${(j: :)${(@q-kv)ZINIT_ICES}}.{rst}"
+    return 0
+}
+
+# vim:ft=zsh:sw=4:sts=4:et:

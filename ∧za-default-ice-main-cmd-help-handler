@@ -1,0 +1,24 @@
+# -*- mode: sh; sh-indentation: 4; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
+# Copyright (c) 2020 Sebastian Gniazdowski
+
+∧za-default-ice-main-cmd-help-handler() {
+    +zinit-message "—— {pre}default-ice {opt}--help{data}/{opt}-h" \
+        "--clear{data}/{opt}-c --show{data}/{opt}-s --get{data}/{opt}-g" \
+        "--quiet{data}/{opt}-q --stats{data}/{opt}-t" \
+        "{nl}{rst}—— {pre}default-ice {b}{ice}ice1{nb}{apo}'{data}value1{apo}'" \
+        "{b}{ice}ice2{nb}{apo}'{data}value2{apo}' {blhi}{-…}" \
+        "{rst}{nl}{nl}" \
+        \
+        "{msg2}{u}Description{nu}{ehi}:{rst}{nl}" \
+        "{opt}--help{data}/{opt}-h{rst}{tab}{ehi}→{msg}      this message{rst}{nl}" \
+        "{opt}--show{data}/{opt}-s{rst}{tab}{ehi}→{msg}      show the currently set default" \
+            "ices{rst}{nl}" \
+        "{opt}--clear{data}/{opt}-c{rst}{tab}{ehi}→{msg}      reset the default ices{rst}{nl}" \
+        "{opt}--get{data}/{opt}-g{rst}{tab}{ehi}→{msg}      return the current ices in{var}" \
+            "Reply{msg} hash{rst}{nl}" \
+        "{opt}--quiet{data}/{opt}-q{rst}{tab}{ehi}→{msg}      hide all messages{rst}{nl}" \
+        "{opt}--stats{data}/{opt}-t{rst}{tab}{ehi}→{msg}      show some statistics{rst}{nl}"
+    return 0
+}
+
+# vim:ft=zsh:tw=80:sw=4:sts=4:et:foldmarker=[[[,]]]

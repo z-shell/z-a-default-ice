@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+# -*- mode: sh; sh-indentation: 4; sh-basic-offset: 4; indent-tabs-mode: nil;  -*-
+
+# Copyright (c) 2020 Sebastian Gniazdowski
+# License: MIT
+
+.za-default-ice-show-default-ices() {
+
+# Set the base and typically useful options.
+builtin emulate -LR zsh
+builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
+
+if [[ $Plugins[DEFAULT_ICE_default-ices] == [[:space:]]# ]] {
+    (( ${#quiet} )) || +zinit-message "{pre}default-ice:{rst}{msg} No ices currently set.{rst}"
+    return 1
+}
+
+local -A ice
+ice=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
+
+local k v
+for k v ( "${(kv)ice[@]}" ) {
+    +zinit-message "{b}{ice}$k{ehi}:{rst}{tab}{data}$v{rst}"
+}
+
+return 0
+
+
+}
+
+# vim:ft=zsh:sw=4:sts=4:et:
