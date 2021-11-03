@@ -1,7 +1,7 @@
 # `Z-A-DEFAULT-ICE`
 
 A [Zsh-Zinit](https://github.com/z-shell/zinit) annex (i.e.: an extension
-module) that allows to set **default ices** for the next `zinit` commands. It
+module) that allows setting **default ices** for the next `zinit` command. It
 adds a new subcommand: **default-ice** which has the following synopsis:
 
 ```
