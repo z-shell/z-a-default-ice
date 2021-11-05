@@ -1,12 +1,16 @@
 # `Z-A-DEFAULT-ICE`
 
+---
+
+# Introduction
+
 A [Zsh-Zinit](https://github.com/z-shell/zinit) annex (i.e.: an extension
 module) that allows setting **default ices** for the next `zinit` command. It
 adds a new subcommand: **default-ice** which has the following synopsis:
 
 ```
-—— default-ice --help/-h --clear/-c --show/-s --get/-g --quiet/-q --stats/-t 
-—— default-ice ice1'value1' ice2'value2' ⋯ 
+—— default-ice --help/-h --clear/-c --show/-s --get/-g --quiet/-q --stats/-t
+—— default-ice ice1'value1' ice2'value2' ⋯
 
  Description:
  --help/-h	→      this message
@@ -23,7 +27,7 @@ adds a new subcommand: **default-ice** which has the following synopsis:
 zinit default-ice lucid from"gh-r"
 
 # Will download from gh-r and also use the lucid ice by default.
-zinit wait for 
+zinit wait for
     sbin        junegunn/fzf-bin \
     sbin"**/pk" peco/peco
 ```
