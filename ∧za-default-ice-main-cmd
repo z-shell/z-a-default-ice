@@ -32,14 +32,14 @@
         -show=show s=show -stats=stats t=stats -get=get g=get \
         -quiet=quiet q=quiet h=help -help=help || retval=1
         if [[ $retval -gt 0 || $1 = -* ]] {
-            +zinit-message "{nl}{error}default-ice annex: {msg}Incorrect options" \
+            +zi-message "{nl}{error}default-ice annex: {msg}Incorrect options" \
                 "given${${(M)1:#-*}:+ "(bad option: {ehi}$1{rst}{msg})"}." \
                 "Usage:{rst}{nl}"
             help=( -h ) retval=1
         }
 
     if (( !$# && !${#help} && !${#show} && !${#clear} && !${#stats} )) {
-        +zinit-message "{ehi}default-ice annex:{rst}{msg} Missing any" \
+        +zi-message "{ehi}default-ice annex:{rst}{msg} Missing any" \
             "ices. Usage:{rst}{nl}"
         help=( -h ) retval=1
     }
@@ -63,17 +63,17 @@
     }
 
     local -A ZI_ICES
-    .zinit-ice "$@"
+    .zi-ice "$@"
     integer iceret=$?
 
     shift iceret
     if (( $# )) {
-        +zinit-message "{error}default-ice:{rst}{msg} Unrecognized ice detected{ehi}:" \
+        +zi-message "{error}default-ice:{rst}{msg} Unrecognized ice detected{ehi}:" \
             "{nb}{error}$1{msg}.{rst}"
         return 1
     }
     Plugins[DEFAULT_ICE_default-ices]=${(j: :)${(@qkv)ZI_ICES}}
-    (( ${#quiet} )) || +zinit-message "{pre}default-ice:{rst}{msg} stored the ices{ehi}:{rst}" \
+    (( ${#quiet} )) || +zi-message "{pre}default-ice:{rst}{msg} stored the ices{ehi}:{rst}" \
                                 "${(j: :)${(@q-kv)ZI_ICES}}.{rst}"
     return 0
 }

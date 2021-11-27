@@ -10,19 +10,19 @@
 builtin emulate -LR zsh
 builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
 
-(( ${#quiet} )) || +zinit-message "{pre}Statistics on the plugin operation{ehi}:{rst}"
+(( ${#quiet} )) || +zi-message "{pre}Statistics on the plugin operation{ehi}:{rst}"
 if [[ $Plugins[DEFAULT_ICE_default-ices] != [[:space:]]# ]] {
     local -A ice
     ice=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
-    +zinit-message "{mmdsh} Number of currently set ices{ehi}{nb}:{num} ${#ice}{rst}"
+    +zi-message "{mmdsh} Number of currently set ices{ehi}{nb}:{num} ${#ice}{rst}"
 }
 
-+zinit-message "{mmdsh} Plugins and snippets processed{ehi}{nb}:{num}" \
++zi-message "{mmdsh} Plugins and snippets processed{ehi}{nb}:{num}" \
     "${Plugins[DEFAULT_ICE_stats:executions]}{rst}" \
     "(p{ehi}:{nb}{num}${Plugins[DEFAULT_ICE_stats:type-plugin]}{rst}," \
     "s{ehi}:{nb}{num}${Plugins[DEFAULT_ICE_stats:type-snippet]}{rst})"
-+zinit-message "{mmdsh} Number of ices applied{ehi}{nb}:{num} ${Plugins[DEFAULT_ICE_stats:applied-ices]}{rst}"
-+zinit-message "{mmdsh} Number of pre-existing ices seen{ehi}{nb}:{num}" \
++zi-message "{mmdsh} Number of ices applied{ehi}{nb}:{num} ${Plugins[DEFAULT_ICE_stats:applied-ices]}{rst}"
++zi-message "{mmdsh} Number of pre-existing ices seen{ehi}{nb}:{num}" \
     "${Plugins[DEFAULT_ICE_stats:existing-ices]}{rst}"
 
 return 0

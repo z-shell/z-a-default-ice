@@ -11,7 +11,7 @@ builtin emulate -LR zsh
 builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
 
 if [[ $Plugins[DEFAULT_ICE_default-ices] == [[:space:]]# ]] {
-    (( ${#quiet} )) || +zinit-message "{pre}default-ice:{rst}{msg} No ices currently set.{rst}"
+    (( ${#quiet} )) || +zi-message "{pre}default-ice:{rst}{msg} No ices currently set.{rst}"
     return 1
 }
 
@@ -20,7 +20,7 @@ ice=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
 
 local k v
 for k v ( "${(kv)ice[@]}" ) {
-    +zinit-message "{b}{ice}$k{ehi}:{rst}{tab}{data}$v{rst}"
+    +zi-message "{b}{ice}$k{ehi}:{rst}{tab}{data}$v{rst}"
 }
 
 return 0
