@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
-# -*- mode: sh; sh-indentation: 4; sh-basic-offset: 4; indent-tabs-mode: nil;  -*-
-
-# Copyright (c) 2020 Sebastian Gniazdowski
-# License: MIT
+# shellcheck shell=sh disable=3043,2034,3003,2296,2298,1037,3006,2154,3024,1009,1073,1072,1050,1083,1140
+#
+# Copyright (c) 2019 Sebastian Gniazdowski
+# Copyright (c) 2021 Z-Shell ZI Contributors
 
 .za-default-ice-stats() {
 
@@ -27,7 +27,4 @@ if [[ $Plugins[DEFAULT_ICE_default-ices] != [[:space:]]# ]] {
 
 return 0
 
-
 }
-
-# vim:ft=zsh:sw=4:sts=4:et:

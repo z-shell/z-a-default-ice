@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
-# -*- mode: sh; sh-indentation: 4; sh-basic-offset: 4; indent-tabs-mode: nil;  -*-
-
-# Copyright (c) 2020 Sebastian Gniazdowski
-# License: MIT
+# shellcheck shell=sh disable=3043,2034,3003,2296,2298,1037,3006,2154,3024,1009,1073,1072,1050,1083,1140,1036,1088
+#
+# Copyright (c) 2019 Sebastian Gniazdowski
+# Copyright (c) 2021 Z-Shell ZI Contributors
 
 ∧za-default-ice-main-cmd() {
     # Set the base and typically useful options.
@@ -62,7 +62,7 @@
         return $?
     }
 
-    local -A ZINIT_ICES
+    local -A ZI_ICES
     .zinit-ice "$@"
     integer iceret=$?
 
@@ -72,10 +72,8 @@
             "{nb}{error}$1{msg}.{rst}"
         return 1
     }
-    Plugins[DEFAULT_ICE_default-ices]=${(j: :)${(@qkv)ZINIT_ICES}}
+    Plugins[DEFAULT_ICE_default-ices]=${(j: :)${(@qkv)ZI_ICES}}
     (( ${#quiet} )) || +zinit-message "{pre}default-ice:{rst}{msg} stored the ices{ehi}:{rst}" \
-                                "${(j: :)${(@q-kv)ZINIT_ICES}}.{rst}"
+                                "${(j: :)${(@q-kv)ZI_ICES}}.{rst}"
     return 0
 }
-
-# vim:ft=zsh:sw=4:sts=4:et:

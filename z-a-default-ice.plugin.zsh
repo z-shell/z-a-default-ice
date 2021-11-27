@@ -1,7 +1,8 @@
-# -*- mode: sh; sh-indentation: 4; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
-
-# Copyright (c) 2020 Sebastian Gniazdowski
-
+# shellcheck shell=sh disable=3043,2034,3003,2296,2298,1037,3006,2154,3024,1009,1073,1072,1050,1083,1140
+#
+# Copyright (c) 2019 Sebastian Gniazdowski
+# Copyright (c) 2021 Z-Shell ZI Contributors
+#
 # According to the Zsh Plugin Standard:
 # http://zdharma.org/Zsh-100-Commits-Club/Zsh-Plugin-Standard.html#zero-handling
 
@@ -39,5 +40,3 @@ autoload -Uz ∧za-default-ice-preinit-handler \
 (( Plugins[DEFAULT_ICE_stats:applied-ices] = 0 ))
 (( Plugins[DEFAULT_ICE_stats:type-snippet] = 0 ))
 (( Plugins[DEFAULT_ICE_stats:type-plugin] = 0 ))
-
-# vim:ft=zsh:tw=80:sw=4:sts=4:et:foldmarker=[[[,]]]
