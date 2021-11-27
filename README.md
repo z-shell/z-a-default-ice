@@ -1,12 +1,7 @@
-# `Z-A-DEFAULT-ICE`
-
----
-
 # Introduction
 
-A [Zsh-Zinit](https://github.com/z-shell/zinit) annex (i.e.: an extension
-module) that allows setting **default ices** for the next `zinit` command. It
-adds a new subcommand: **default-ice** which has the following synopsis:
+A [ZI](https://github.com/z-shell/zi) Annex (i.e.: an extension) that allows setting **default ices** for the next `zi` command.
+It adds a new subcommand: **default-ice** which has the following synopsis:
 
 ```
 —— default-ice --help/-h --clear/-c --show/-s --get/-g --quiet/-q --stats/-t
@@ -21,17 +16,15 @@ adds a new subcommand: **default-ice** which has the following synopsis:
  --stats/-t	→      show some statistics
 ```
 
-## Example Use
+# Usage with [ZI](https://github.com/z-shell/zi)
 
 ```zsh
-zinit default-ice lucid from"gh-r"
+zi default-ice lucid from"gh-r"
 
 # Will download from gh-r and also use the lucid ice by default.
-zinit wait for
+zi wait for
     sbin        junegunn/fzf-bin \
     sbin"**/pk" peco/peco
 ```
 
 Currently the `wait''` ice cannot be made default by using this new subcommand.
-
-<!-- vim:set ft=markdown tw=79 autoindent fo+=a1n: -->
