@@ -1,10 +1,9 @@
 #!/usr/bin/env zsh
-# shellcheck shell=sh disable=3043,2034,3003,2296,2298,1037,3006,2154,3024,1009,1073,1072,1050,1083,1140
-#
+
 # Copyright (c) 2019 Sebastian Gniazdowski
 # Copyright (c) 2021 Z-Shell ZI Contributors
 
-.za-default-ice-stats() {
+za-default-ice-stats() {
 
 # Set the base and typically useful options.
 builtin emulate -LR zsh
@@ -12,18 +11,18 @@ builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
 
 (( ${#quiet} )) || +zi-message "{pre}Statistics on the plugin operation{ehi}:{rst}"
 if [[ $Plugins[DEFAULT_ICE_default-ices] != [[:space:]]# ]] {
-    local -A ice
-    ice=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
-    +zi-message "{mmdsh} Number of currently set ices{ehi}{nb}:{num} ${#ice}{rst}"
+	local -A ice
+	ice=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
+	+zi-message "{mmdsh} Number of currently set ices{ehi}{nb}:{num} ${#ice}{rst}"
 }
 
 +zi-message "{mmdsh} Plugins and snippets processed{ehi}{nb}:{num}" \
-    "${Plugins[DEFAULT_ICE_stats:executions]}{rst}" \
-    "(p{ehi}:{nb}{num}${Plugins[DEFAULT_ICE_stats:type-plugin]}{rst}," \
-    "s{ehi}:{nb}{num}${Plugins[DEFAULT_ICE_stats:type-snippet]}{rst})"
+  "${Plugins[DEFAULT_ICE_stats:executions]}{rst}" \
+  "(p{ehi}:{nb}{num}${Plugins[DEFAULT_ICE_stats:type-plugin]}{rst}," \
+  "s{ehi}:{nb}{num}${Plugins[DEFAULT_ICE_stats:type-snippet]}{rst})"
 +zi-message "{mmdsh} Number of ices applied{ehi}{nb}:{num} ${Plugins[DEFAULT_ICE_stats:applied-ices]}{rst}"
 +zi-message "{mmdsh} Number of pre-existing ices seen{ehi}{nb}:{num}" \
-    "${Plugins[DEFAULT_ICE_stats:existing-ices]}{rst}"
+  "${Plugins[DEFAULT_ICE_stats:existing-ices]}{rst}"
 
 return 0
 

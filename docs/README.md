@@ -23,8 +23,8 @@ zi default-ice lucid from"gh-r"
 
 # Will download from gh-r and also use the lucid ice by default.
 zi wait for
-    sbin        junegunn/fzf-bin \
-    sbin"**/pk" peco/peco
+  sbin        junegunn/fzf-bin \
+  sbin"**/pk" peco/peco
 ```
 
 Currently the `wait''` ice cannot be made default by using this new subcommand.

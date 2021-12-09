@@ -1,24 +1,23 @@
 #!/usr/bin/env zsh
-# shellcheck shell=sh disable=3043,2034,3003,2296,2298,1037,3006,2154,3024,1009,1073,1072,1050,1083,1140
-#
+
 # Copyright (c) 2019 Sebastian Gniazdowski
 # Copyright (c) 2021 Z-Shell ZI Contributors
 
-∧za-default-ice-preinit-handler() {
+za-default-ice-preinit-handler() {
 
 builtin emulate -LR zsh
 builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
 
 if [[ $1 == plugin ]] {
-    local __type=$1 __user=$2 __plugin=$3 __id_as=$4 __dir=$5 __hook=$6 __subtype=$7
+  local __type=$1 __user=$2 __plugin=$3 __id_as=$4 __dir=$5 __hook=$6 __subtype=$7
 } else {
-    local __type=$1 __url=$2 __id_as=$3 __dir=$4 __hook=$5 __subtype=$6
+  local __type=$1 __url=$2 __id_as=$3 __dir=$4 __hook=$5 __subtype=$6
 }
 
 # Any default ices set?
 if [[ $Plugins[DEFAULT_ICE_default-ices] == [[:space:]]# ]] {
-    # No, nothing to do.
-    return 0
+  # No, nothing to do.
+  return 0
 }
 
 (( Plugins[DEFAULT_ICE_stats:existing-ices] += ${#ICE} ))

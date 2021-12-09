@@ -1,18 +1,17 @@
 #!/usr/bin/env zsh
-# shellcheck shell=sh disable=3043,2034,3003,2296,2298,1037,3006,2154,3024,1009,1073,1072,1050,1083,1140
-#
+
 # Copyright (c) 2019 Sebastian Gniazdowski
 # Copyright (c) 2021 Z-Shell ZI Contributors
 
-.za-default-ice-show-default-ices() {
+za-default-ice-show-default-ices() {
 
 # Set the base and typically useful options.
 builtin emulate -LR zsh
 builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
 
 if [[ $Plugins[DEFAULT_ICE_default-ices] == [[:space:]]# ]] {
-    (( ${#quiet} )) || +zi-message "{pre}default-ice:{rst}{msg} No ices currently set.{rst}"
-    return 1
+  (( ${#quiet} )) || +zi-message "{pre}default-ice:{rst}{msg} No ices currently set.{rst}"
+  return 1
 }
 
 local -A ice
@@ -20,10 +19,9 @@ ice=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
 
 local k v
 for k v ( "${(kv)ice[@]}" ) {
-    +zi-message "{b}{ice}$k{ehi}:{rst}{tab}{data}$v{rst}"
+  +zi-message "{b}{ice}$k{ehi}:{rst}{tab}{data}$v{rst}"
 }
 
 return 0
-
 
 }
