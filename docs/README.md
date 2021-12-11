@@ -1,6 +1,10 @@
-# Introduction
+## ZI Annex `DEFAULT-ICE`
 
-A [ZI](https://github.com/z-shell/zi) Annex (i.e.: an extension) that allows setting **default ices** for the next `zi` command.
+### **Wiki** 
+
+Currently no additional documentation available in [wiki](https://github.com/z-shell/wiki).
+
+An annex (i.e.: an extension) that allows setting **default ices** for the next `zi` command.
 It adds a new subcommand: **default-ice** which has the following synopsis:
 
 ```
