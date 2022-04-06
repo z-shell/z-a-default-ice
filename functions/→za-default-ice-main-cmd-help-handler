@@ -6,8 +6,7 @@
     "--clear{data}/{opt}-c --show{data}/{opt}-s --get{data}/{opt}-g" \
     "--quiet{data}/{opt}-q --stats{data}/{opt}-t" \
     "{nl}{rst}—— {pre}default-ice {b}{ice}ice1{nb}{apo}'{data}value1{apo}'" \
-    "{b}{ice}ice2{nb}{apo}'{data}value2{apo}' {blhi}{-…}" \
-    "{rst}{nl}{nl}" \
+    "{b}{ice}ice2{nb}{apo}'{data}value2{apo}' {ehi}{…}" "{rst}{nl}{nl}" \
     \
     "{msg2}{u}Description{nu}{ehi}:{rst}{nl}" \
     "{opt}--help{data}/{opt}-h{rst}{tab}{ehi}→{msg}      this message{rst}{nl}" \
