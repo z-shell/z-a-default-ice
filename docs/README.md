@@ -1,8 +1,16 @@
-## ZI Annex `DEFAULT-ICE`
+<h1 align="center">
+  <a href="https://github.com/z-shell/zi">
+    <img src="https://github.com/z-shell/zi/raw/main/docs/images/logo.svg" alt="Logo" width="80" height="80" />
+  </a>
+❮ ZI ❯ Annex - default-ice
+</h1>
 
-### **Wiki** 
+## 💡 Wiki 
 
-Currently no additional documentation available in [wiki](https://github.com/z-shell/wiki).
+- [default-ice](https://z.digitalclouds.dev/docs/ecosystem/annexes/default-ice)
+- [annexes](https://z.digitalclouds.dev/docs/ecosystem/annexes)
+
+## Introduction
 
 An annex (i.e.: an extension) that allows setting **default ices** for the next `zi` command.
 It adds a new subcommand: **default-ice** which has the following synopsis:
