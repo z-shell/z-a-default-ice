@@ -3,7 +3,7 @@
 # Copyright (c) 2019 Sebastian Gniazdowski
 # Copyright (c) 2021 Z-Shell ZI Contributors
 
-za-default-ice-stats() {
+.za-default-ice-stats() {
 
 # Set the base and typically useful options.
 builtin emulate -LR zsh
@@ -27,3 +27,5 @@ if [[ $Plugins[DEFAULT_ICE_default-ices] != [[:space:]]# ]] {
 return 0
 
 }
+
+# vim: ft=zsh sw=2 ts=2 et

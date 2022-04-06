@@ -3,7 +3,7 @@
 # Copyright (c) 2019 Sebastian Gniazdowski
 # Copyright (c) 2021 Z-Shell ZI Contributors
 
-za-default-ice-preinit-handler() {
+→za-default-ice-preinit-handler() {
 
 builtin emulate -LR zsh
 builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
@@ -36,3 +36,5 @@ ICE=( "${(kv)__defices[@]}" "${(kv)ICE[@]}" )
 return 0
 
 }
+
+# vim: ft=zsh sw=2 ts=2 et

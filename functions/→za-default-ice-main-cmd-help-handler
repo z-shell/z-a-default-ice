@@ -1,9 +1,7 @@
-#!/usr/bin/env zsh
-
 # Copyright (c) 2019 Sebastian Gniazdowski
 # Copyright (c) 2021 Z-Shell ZI Contributors
 
-za-default-ice-main-cmd-help-handler() {
+→za-default-ice-main-cmd-help-handler() {
   +zi-message "—— {pre}default-ice {opt}--help{data}/{opt}-h" \
     "--clear{data}/{opt}-c --show{data}/{opt}-s --get{data}/{opt}-g" \
     "--quiet{data}/{opt}-q --stats{data}/{opt}-t" \
@@ -22,3 +20,5 @@ za-default-ice-main-cmd-help-handler() {
     "{opt}--stats{data}/{opt}-t{rst}{tab}{ehi}→{msg}      show some statistics{rst}{nl}"
   return 0
 }
+
+# vim: ft=zsh sw=2 ts=2 et

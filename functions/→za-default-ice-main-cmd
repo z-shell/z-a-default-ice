@@ -3,7 +3,7 @@
 # Copyright (c) 2019 Sebastian Gniazdowski
 # Copyright (c) 2021 Z-Shell ZI Contributors
 
-za-default-ice-main-cmd() {
+→za-default-ice-main-cmd() {
   # Set the base and typically useful options.
   builtin emulate -LR zsh
   builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
@@ -43,19 +43,19 @@ za-default-ice-main-cmd() {
 
   # --help/-h
   if (( ${#help} )) {
-    za-default-ice-main-cmd-help-handler
+    →za-default-ice-main-cmd-help-handler
     return retval
   }
 
   # --show/-s
   if (( ${#show} )) {
-    za-default-ice-show-default-ices
+    .za-default-ice-show-default-ices
     return $?
   }
 
   # --stats/-t
   if (( ${#stats} )) {
-    za-default-ice-stats
+    .za-default-ice-stats
     return $?
   }
 
@@ -72,3 +72,5 @@ za-default-ice-main-cmd() {
   (( ${#quiet} )) || +zi-message "{pre}default-ice:{rst}{msg} stored the ices{ehi}:{rst}" "${(j: :)${(@q-kv)ZI_ICES}}.{rst}"
   return 0
 }
+
+# vim: ft=zsh sw=2 ts=2 et
