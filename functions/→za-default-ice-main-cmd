@@ -60,7 +60,7 @@
   }
 
   local -A ZI_ICES
-  zi-ice "$@"
+  .zi-ice "$@"
   integer iceret=$?
 
   shift iceret
