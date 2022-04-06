@@ -2,8 +2,7 @@
 # Copyright (c) 2021 Z-Shell ZI Contributors
 
 →za-default-ice-main-cmd-help-handler() {
-  +zi-message "{nl} \
-    —— {pre}default-ice {opt}--help{data}/{opt}-h" \
+  +zi-message "{nl}—— {pre}default-ice {opt}--help{data}/{opt}-h" \
     "--clear{data}/{opt}-c --show{data}/{opt}-s --get{data}/{opt}-g" \
     "--quiet{data}/{opt}-q --stats{data}/{opt}-t" \
     "{nl}{rst}—— {pre}default-ice {b}{ice}ice1{nb}{apo}'{data}value1{apo}'" \
