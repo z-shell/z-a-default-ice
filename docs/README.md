@@ -40,3 +40,11 @@ zi wait for
 ```
 
 Currently the `wait''` ice cannot be made default by using this new subcommand.
+
+# Install
+
+Simply load like a regular plugin, i.e.:
+
+```zsh
+zi light z-shell/z-a-default-ice
+```
