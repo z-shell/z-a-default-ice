@@ -1,5 +1,8 @@
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
+#
 # Copyright (c) 2019 Sebastian Gniazdowski
-# Copyright (c) 2021 Z-Shell ZI Contributors
+# Copyright (c) 2021 Z-Shell Community
 #
 # According to the Zsh Plugin Standard:
 # https://z.digitalclouds.dev/community/zsh_plugin_standard#zero-handling
@@ -24,12 +27,12 @@ autoload -Uz →za-default-ice-preinit-handler \
 .za-default-ice-stats
 
 # An empty stub to fill the help handler fields
-→za-default-ice-help-null-handler() { :; }
+→za-default-ice-null-handler() { :; }
 
 # The unscoping-support hook.
 @zi-register-annex "z-a-default-ice" hook:preinit-3 \
   →za-default-ice-preinit-handler \
-  →za-default-ice-help-null-handler
+  →za-default-ice-null-handler
 
 # The subcommand `meta'.
 @zi-register-annex "z-a-default-ice" subcommand:default-ice \
@@ -41,5 +44,3 @@ autoload -Uz →za-default-ice-preinit-handler \
 (( Plugins[DEFAULT_ICE_stats:applied-ices] = 0 ))
 (( Plugins[DEFAULT_ICE_stats:type-snippet] = 0 ))
 (( Plugins[DEFAULT_ICE_stats:type-plugin] = 0 ))
-
-# vim: ft=zsh sw=2 ts=2 et
