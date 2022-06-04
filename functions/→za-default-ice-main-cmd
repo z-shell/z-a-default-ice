@@ -1,12 +1,14 @@
-#!/usr/bin/env zsh
-
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
+#
 # Copyright (c) 2019 Sebastian Gniazdowski
-# Copyright (c) 2021 Z-Shell ZI Contributors
+# Copyright (c) 2021-present Z-Shell Community
 
 →za-default-ice-main-cmd() {
+
   # Set the base and typically useful options.
-  builtin emulate -LR zsh
-  builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
+  builtin emulate -L zsh ${=${options[xtrace]:#off}:+-o xtrace}
+  builtin setopt extended_glob warn_create_global typeset_silent no_short_loops rc_quotes no_auto_pushd
 
   autoload -Uz is-at-least
   local is_58
@@ -31,13 +33,13 @@
     -show=show s=show -stats=stats t=stats -get=get g=get \
     -quiet=quiet q=quiet h=help -help=help || retval=1
     if [[ $retval -gt 0 || $1 = -* ]] {
-      +zi-message "{nl}{error}default-ice annex: {msg}Incorrect options" \
-        "given${${(M)1:#-*}:+ "(bad option: {ehi}$1{rst}{msg})"}." "Usage:{rst}{nl}"
+      +zi-message "{annex}default-ice-annex{ehi}:{rst} {msg}Incorrect options" \
+        "given${${(M)1:#-*}:+ "(bad option: {ehi}$1{rst}{msg})"}." "Usage{ehi}:{rst}{nl}"
       help=( -h ) retval=1
     }
 
   if (( !$# && !${#help} && !${#show} && !${#clear} && !${#stats} )) {
-    +zi-message "{ehi}default-ice annex:{rst}{msg} Missing any" "ices. Usage:{rst}{nl}"
+    +zi-message "{annex}default-ice-annex{ehi}:{rst}{msg} Missing any" "ices. Usage{ehi}:{rst}{nl}"
     help=( -h ) retval=1
   }
 
@@ -65,12 +67,10 @@
 
   shift iceret
   if (( $# )) {
-    +zi-message "{error}default-ice:{rst}{msg} Unrecognized ice detected{ehi}:" "{nb}{error}$1{msg}.{rst}"
+    +zi-message "{annex}default-ice-annex{ehi}:{rst}{msg} Unrecognized ice detected{ehi}: {nb}{error}$1{msg}{rst}"
     return 1
   }
   Plugins[DEFAULT_ICE_default-ices]=${(j: :)${(@qkv)ZI_ICES}}
-  (( ${#quiet} )) || +zi-message "{pre}default-ice:{rst}{msg} stored the ices{ehi}:{rst}" "${(j: :)${(@q-kv)ZI_ICES}}.{rst}"
+  (( ${#quiet} )) || +zi-message "{annex}default-ice-annex{ehi}:{rst}{msg} stored the ices{ehi}:{rst}" "${(j: :)${(@q-kv)ZI_ICES}}{rst}"
   return 0
 }
-
-# vim: ft=zsh sw=2 ts=2 et
