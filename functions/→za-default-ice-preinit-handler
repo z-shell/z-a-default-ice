@@ -1,40 +1,38 @@
-#!/usr/bin/env zsh
-
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
+#
 # Copyright (c) 2019 Sebastian Gniazdowski
-# Copyright (c) 2021 Z-Shell ZI Contributors
+# Copyright (c) 2021 Z-Shell Community
 
 →za-default-ice-preinit-handler() {
 
-builtin emulate -LR zsh
-builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
+  builtin emulate -L zsh ${=${options[xtrace]:#off}:+-o xtrace}
+  builtin setopt extended_glob warn_create_global typeset_silent no_short_loops rc_quotes no_auto_pushd
 
-if [[ $1 == plugin ]] {
-  local __type=$1 __user=$2 __plugin=$3 __id_as=$4 __dir=$5 __hook=$6 __subtype=$7
-} else {
-  local __type=$1 __url=$2 __id_as=$3 __dir=$4 __hook=$5 __subtype=$6
-}
+  if [[ $1 == plugin ]] {
+    local __type=$1 __user=$2 __plugin=$3 __id_as=$4 __dir=$5 __hook=$6 __subtype=$7
+  } else {
+    local __type=$1 __url=$2 __id_as=$3 __dir=$4 __hook=$5 __subtype=$6
+  }
 
-# Any default ices set?
-if [[ $Plugins[DEFAULT_ICE_default-ices] == [[:space:]]# ]] {
-  # No, nothing to do.
+  # Any default ices set?
+  if [[ $Plugins[DEFAULT_ICE_default-ices] == [[:space:]]# ]] {
+    # No, nothing to do.
+    return 0
+  }
+
+  (( Plugins[DEFAULT_ICE_stats:existing-ices] += ${#ICE} ))
+
+  local -A __defices
+  __defices=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
+
+  # Apply the ices, whithout enforcing them — they can
+  # be overriden by the object's own ices.
+  ICE=( "${(kv)__defices[@]}" "${(kv)ICE[@]}" )
+
+  (( Plugins[DEFAULT_ICE_stats:executions] ++ ))
+  (( Plugins[DEFAULT_ICE_stats:applied-ices] += ${#__defices} ))
+  (( Plugins[DEFAULT_ICE_stats:type-$__type] ++ ))
+
   return 0
 }
-
-(( Plugins[DEFAULT_ICE_stats:existing-ices] += ${#ICE} ))
-
-local -A __defices
-__defices=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
-
-# Apply the ices, whithout enforcing them — they can
-# be overriden by the object's own ices.
-ICE=( "${(kv)__defices[@]}" "${(kv)ICE[@]}" )
-
-(( Plugins[DEFAULT_ICE_stats:executions] ++ ))
-(( Plugins[DEFAULT_ICE_stats:applied-ices] += ${#__defices} ))
-(( Plugins[DEFAULT_ICE_stats:type-$__type] ++ ))
-
-return 0
-
-}
-
-# vim: ft=zsh sw=2 ts=2 et
