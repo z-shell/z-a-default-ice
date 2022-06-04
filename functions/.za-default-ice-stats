@@ -1,28 +1,27 @@
-#!/usr/bin/env zsh
-
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
+#
 # Copyright (c) 2019 Sebastian Gniazdowski
-# Copyright (c) 2021 Z-Shell ZI Contributors
+# Copyright (c) 2021-present Z-Shell Community
+
 
 .za-default-ice-stats() {
 
-# Set the base and typically useful options.
-builtin emulate -LR zsh
-builtin setopt extendedglob warncreateglobal typesetsilent noshortloops
+  # Set the base and typically useful options.
+  builtin emulate -L zsh ${=${options[xtrace]:#off}:+-o xtrace}
+  builtin setopt extended_glob warn_create_global typeset_silent no_short_loops rc_quotes no_auto_pushd
 
-(( ${#quiet} )) || +zi-message "{pre}Statistics on the plugin operation{ehi}:{rst}"
-if [[ $Plugins[DEFAULT_ICE_default-ices] != [[:space:]]# ]] {
-	local -A ice
-	ice=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
-	+zi-message "{ice} Number of currently set ices{ehi}{nb}:{num} ${#ice}{rst}"
+	(( ${#quiet} )) || +zi-message "{pre}Statistics on the plugin operation{ehi}:{rst}"
+  if [[ $Plugins[DEFAULT_ICE_default-ices] != [[:space:]]# ]] {
+	  local -A ice
+	  ice=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
+	  +zi-message "{ice} Number of currently set ices{ehi}{nb}:{num} ${#ice}{rst}"
+  }
+
+  +zi-message "{ice} Plugins and snippets processed{ehi}{nb}:{num}" "${Plugins[DEFAULT_ICE_stats:executions]}{rst}" \
+  "(p{ehi}:{nb}{num}${Plugins[DEFAULT_ICE_stats:type-plugin]}{rst}," "s{ehi}:{nb}{num}${Plugins[DEFAULT_ICE_stats:type-snippet]}{rst})"
+  +zi-message "{ice} Number of ices applied{ehi}{nb}:{num} ${Plugins[DEFAULT_ICE_stats:applied-ices]}{rst}"
+  +zi-message "{ice} Number of pre-existing ices seen{ehi}{nb}:{num}" "${Plugins[DEFAULT_ICE_stats:existing-ices]}{rst}"
+
+  return 0
 }
-
-+zi-message "{ice} Plugins and snippets processed{ehi}{nb}:{num}" "${Plugins[DEFAULT_ICE_stats:executions]}{rst}" \
-"(p{ehi}:{nb}{num}${Plugins[DEFAULT_ICE_stats:type-plugin]}{rst}," "s{ehi}:{nb}{num}${Plugins[DEFAULT_ICE_stats:type-snippet]}{rst})"
-+zi-message "{ice} Number of ices applied{ehi}{nb}:{num} ${Plugins[DEFAULT_ICE_stats:applied-ices]}{rst}"
-+zi-message "{ice} Number of pre-existing ices seen{ehi}{nb}:{num}" "${Plugins[DEFAULT_ICE_stats:existing-ices]}{rst}"
-
-return 0
-
-}
-
-# vim: ft=zsh sw=2 ts=2 et
