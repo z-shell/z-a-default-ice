@@ -10,7 +10,7 @@
   builtin emulate -L zsh ${=${options[xtrace]:#off}:+-o xtrace}
   builtin setopt extended_glob warn_create_global typeset_silent no_short_loops rc_quotes no_auto_pushd
 
-  if [[ $Plugins[DEFAULT_ICE_default-ices] == [[:space:]] ]] {
+  if [[ $Plugins[DEFAULT_ICE_default-ices] == [[:space:]]# ]] {
     (( ${#quiet} )) || +zi-message "{annex}default-ice{ehi}:{rst}{msg} No ices currently set{rst}"
     return 1
   }
