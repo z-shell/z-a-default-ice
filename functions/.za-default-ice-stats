@@ -4,7 +4,6 @@
 # Copyright (c) 2019 Sebastian Gniazdowski
 # Copyright (c) 2021-present Z-Shell Community
 
-
 .za-default-ice-stats() {
 
   # Set the base and typically useful options.
@@ -13,9 +12,9 @@
 
 	(( ${#quiet} )) || +zi-message "{pre}Statistics on the plugin operation{ehi}:{rst}"
   if [[ $Plugins[DEFAULT_ICE_default-ices] != [[:space:]]# ]] {
-	  local -A ice
-	  ice=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
-	  +zi-message "{ice} Number of currently set ices{ehi}{nb}:{num} ${#ice}{rst}"
+    local -A ice
+    ice=( "${(@Q)${(@z)Plugins[DEFAULT_ICE_default-ices]}}" )
+    +zi-message "{ice} Number of currently set ices{ehi}{nb}:{num} ${#ice}{rst}"
   }
 
   +zi-message "{ice} Plugins and snippets processed{ehi}{nb}:{num}" "${Plugins[DEFAULT_ICE_stats:executions]}{rst}" \
