@@ -4,7 +4,7 @@
     <img align="center" src="https://github.com/z-shell/zi/raw/main/docs/images/logo.svg" alt="Logo" width="60px" height="60px" />
   </a> ❮ ZI ❯ Annex - default-ice </p>
 </h1>
-<h2>
+<h2 align="center">
     <p> An annex delivers capability to set <b>default ices</b> for the next <code>zi</code> command</p>
 </h2></td></tr></table><hr />
 
