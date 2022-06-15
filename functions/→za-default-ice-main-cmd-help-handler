@@ -12,5 +12,6 @@
   "{tab}{opt}[-t]{rst}{msg} – Show statistics{rst}{nl}" \
   "{tab}{opt}[-q]{rst}{msg} – Hide all messages{rst}{nl}" \
   "{tab}{opt}[-h]{rst}{msg} – This message{rst}{nl}"
-  return 0
 }
+
+return 0
