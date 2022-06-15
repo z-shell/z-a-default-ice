@@ -5,6 +5,7 @@
 # Copyright (c) 2021 Z-Shell Community
 
 →za-default-ice-main-cmd-help-handler() {
+
   +zi-message "—— {annex}default-ice{nl}" \
   "{tab}{opt}[-s]{rst}{msg} – Show currently set default ices{rst}{nl}" \
   "{tab}{opt}[-c]{rst}{msg} – Reset default ices{rst}{nl}" \
@@ -12,6 +13,6 @@
   "{tab}{opt}[-t]{rst}{msg} – Show statistics{rst}{nl}" \
   "{tab}{opt}[-q]{rst}{msg} – Hide all messages{rst}{nl}" \
   "{tab}{opt}[-h]{rst}{msg} – This message{rst}{nl}"
-}
 
-return 0
+  return 0
+}
