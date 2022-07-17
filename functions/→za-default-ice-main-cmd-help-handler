@@ -1,3 +1,4 @@
+#autoload
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 # vim: ft=zsh sw=2 ts=2 et
 #
@@ -5,14 +6,12 @@
 # Copyright (c) 2021 Z-Shell Community
 
 →za-default-ice-main-cmd-help-handler() {
-
-  +zi-message "—— {annex}default-ice{nl}" \
-  "{tab}{opt}[-s]{rst}{msg} – Show currently set default ices{rst}{nl}" \
-  "{tab}{opt}[-c]{rst}{msg} – Reset default ices{rst}{nl}" \
-  "{tab}{opt}[-g]{rst}{msg} – Return current ices in {var}REPLAY{msg} hash{rst}{nl}" \
-  "{tab}{opt}[-t]{rst}{msg} – Show statistics{rst}{nl}" \
-  "{tab}{opt}[-q]{rst}{msg} – Hide all messages{rst}{nl}" \
-  "{tab}{opt}[-h]{rst}{msg} – This message{rst}{nl}"
-
+  +zi-message "{auto} —— default-ice [ -s | -c | -g | -t | -q | -h ] {nl}{nl}" \
+    "{auto}[ -s ] —— Show currently set default ices{rst}{nl}" \
+    "{auto}[ -c ] —— Reset default ices{rst}{nl}" \
+    "{auto}[ -g ] —— Return current ices in{rst} {var}REPLAY{msg} hash{rst}{nl}" \
+    "{auto}[ -t ] —— Show statistics{rst}{nl}" \
+    "{auto}[ -q ] —— Hide all messages{rst}{nl}" \
+    "{auto}[ -h ] —— This message{rst}{nl}"
   return 0
 }
