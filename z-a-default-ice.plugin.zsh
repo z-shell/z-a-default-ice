@@ -5,21 +5,21 @@
 # Copyright (c) 2021 Z-Shell Community
 #
 # According to the Zsh Plugin Standard:
-# https://z.digitalclouds.dev/community/zsh_plugin_standard#zero-handling
+# https://wiki.zshell.dev/community/zsh_plugin_standard#zero-handling
 0="${ZERO:-${${0:#$ZSH_ARGZERO}:-${(%):-%N}}}"
 0="${${(M)0:#/*}:-$PWD/$0}"
 
-# https://z.digitalclouds.dev/community/zsh_plugin_standard#funtions-directory
+# https://wiki.zshell.dev/community/zsh_plugin_standard#funtions-directory
 if [[ $PMSPEC != *f* ]] {
     fpath+=( "${0:h}/functions" )
 }
 
 # Standard hash for plugins:
-# https://z.digitalclouds.dev/community/zsh_plugin_standard#standard-plugins-hash
+# https://wiki.zshell.dev/community/zsh_plugin_standard#standard-plugins-hash
 typeset -gA Plugins
 Plugins[DEFAULT_ICE_DIR]="${0:h}"
 
-# https://z.digitalclouds.dev/community/zsh_plugin_standard#the-proposed-function-name-prefixes
+# https://wiki.zshell.dev/community/zsh_plugin_standard#the-proposed-function-name-prefixes
 autoload -Uz →za-default-ice-preinit-handler \
 →za-default-ice-main-cmd-help-handler \
 →za-default-ice-main-cmd \
