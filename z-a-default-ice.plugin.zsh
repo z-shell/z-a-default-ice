@@ -39,8 +39,10 @@ autoload -Uz →za-default-ice-preinit-handler \
   →za-default-ice-main-cmd \
   →za-default-ice-main-cmd-help-handler
 
-(( Plugins[DEFAULT_ICE_stats:existing-ices] = 0 ))
-(( Plugins[DEFAULT_ICE_stats:executions] = 0 ))
-(( Plugins[DEFAULT_ICE_stats:applied-ices] = 0 ))
-(( Plugins[DEFAULT_ICE_stats:type-snippet] = 0 ))
-(( Plugins[DEFAULT_ICE_stats:type-plugin] = 0 ))
+# Plain assignments: `(( ... = 0 ))' evaluates to 0 and therefore returns 1,
+# and the sourced file's status is that of its last command (#4).
+Plugins[DEFAULT_ICE_stats:existing-ices]=0
+Plugins[DEFAULT_ICE_stats:executions]=0
+Plugins[DEFAULT_ICE_stats:applied-ices]=0
+Plugins[DEFAULT_ICE_stats:type-snippet]=0
+Plugins[DEFAULT_ICE_stats:type-plugin]=0
