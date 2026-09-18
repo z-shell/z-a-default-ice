@@ -1,0 +1,69 @@
+---
+name: Zsh
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "*.zsh"
+      - "functions/*"
+      - "tests/*"
+      - ".github/workflows/zsh-n.yml"
+  pull_request:
+    paths:
+      - "*.zsh"
+      - "functions/*"
+      - "tests/*"
+      - ".github/workflows/zsh-n.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  zsh-n:
+    name: Syntax and Compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Zsh
+        run: sudo apt update && sudo apt-get install -yq zsh
+      - name: Check and compile every Zsh source
+        shell: bash
+        run: |
+          set -euo pipefail
+          checked=0
+          scratch="$(mktemp -d)"
+          trap 'rm -rf -- "$scratch"' EXIT
+          while IFS= read -r -d '' file; do
+            zsh -n "$file"
+            # zcompile cannot open a path whose name carries multibyte
+            # characters (the arrow-prefixed function files), so compile a
+            # copy under an ASCII name; the check is about the content.
+            cp -- "$file" "$scratch/source"
+            zsh -fc 'zcompile "$1"' _ "$scratch/source"
+            rm -f -- "$scratch/source" "$scratch/source.zwc"
+            checked=$((checked + 1))
+          done < <(find . -path ./.git -prune -o -type f \( -name '*.zsh' -o -path './functions/*' \) -print0)
+          echo "checked $checked file(s)"
+          [[ $checked -gt 0 ]]
+
+  load-status:
+    name: Load Status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Zsh
+        run: sudo apt update && sudo apt-get install -yq zsh
+      - name: Test the entry file load status
+        run: zsh -f tests/load-status.zsh
