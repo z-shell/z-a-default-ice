@@ -17,3 +17,10 @@ lint:
     - gitleaks@8.8.11
     - markdownlint@0.31.1
     - prettier@2.7.1
+  ignore:
+    # The vendored organization code-review skill is installed at a pinned
+    # revision, and org-routing.py check compares its resource files byte for
+    # byte; formatting them would break the pin.
+    - linters: [prettier, markdownlint]
+      paths:
+        - .github/skills/code-review/**
